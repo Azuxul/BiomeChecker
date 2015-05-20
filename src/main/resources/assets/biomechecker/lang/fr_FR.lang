@@ -1,0 +1,4 @@
+command.biomedictionary.usage=/biomedictionary <x> <z> OU /biomedictionary
+command.biomedictionary.success=Le biome %b1 fait parti de la catégorie %b2 dans le ForgeBiomeDictionary
+command.biomedictionary.null=Le biome %b1 ne fait parit du ForgeBiomeDictionary
+text.and=et

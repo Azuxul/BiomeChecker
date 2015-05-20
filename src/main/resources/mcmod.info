@@ -1,0 +1,16 @@
+[
+{
+  "modid": "biomechecker",
+  "name": "Biome Checker",
+  "description": "This mod add a new command for get biome category in ForgeBiomeDictionary",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "http://azuxul.free.fr/mod",
+  "updateUrl": "",
+  "authorList": ["Azuxul"],
+  "credits": "Azuxul",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

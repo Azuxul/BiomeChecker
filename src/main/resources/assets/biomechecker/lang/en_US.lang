@@ -1,0 +1,4 @@
+command.biomedictionary.usage=/biomedictionary <x> <z> OR /biomedictionary
+command.biomedictionary.success=%b1 biome category in ForgeBiomeDictionary is %b2
+command.biomedictionary.null=%b1 biome not registry in ForgeBiomeDictionary
+text.and=and
