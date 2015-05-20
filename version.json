@@ -9,5 +9,13 @@
 			"isDirectLink":"true",
 			"newFileName":"BiomeChecker-1.7.10-1.0"
 		}
+		{
+			"mcVersion":"Minecraft 1.8",
+			"modVersion":"1.0",
+			"changeLog": [],
+			"updateURL":"http://minecraft.curseforge.com/mc-mods/230703-biomechecker/files/2239041/download",
+			"isDirectLink":"true",
+			"newFileName":"BiomeChecker-1.8-1.0"
+		}
 	]
 }
