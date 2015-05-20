@@ -1,10 +1,17 @@
 package azuxul.biomechecker.command;
 
+import java.util.List;
+
+import com.google.common.collect.Lists;
+
+import net.minecraft.block.Block;
 import net.minecraft.command.CommandBase;
+import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumChatFormatting;
@@ -17,7 +24,7 @@ import net.minecraftforge.common.BiomeDictionary.Type;
 
 public class CommandBiomeDictionary extends CommandBase {
 
-    public String getCommandName(){
+    public String getName(){
     	
     	return "biomedictionary";
     }
@@ -32,23 +39,23 @@ public class CommandBiomeDictionary extends CommandBase {
         return StatCollector.translateToLocal("command.biomedictionary.usage");
     }
 
-    public void processCommand(ICommandSender sender, String[] args){
+    public void execute(ICommandSender sender, String[] args) throws CommandException{
     	
     	EntityPlayer player = getCommandSenderAsPlayer(sender);
     	
     	if(args.length > 1){
     		
     		String text = "empty";
-    		BiomeGenBase biome;
+    		BiomeGenBase[] biome;
     		
     		try {
-    			biome = sender.getEntityWorld().getWorldChunkManager().getBiomeGenAt(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
+    			biome = sender.getEntityWorld().getWorldChunkManager().getBiomeGenAt(null, Integer.parseInt(args[0]), Integer.parseInt(args[1]), Integer.parseInt(args[0]), Integer.parseInt(args[1]), true);
     		}
     		catch(Exception e){
     			throw new WrongUsageException(StatCollector.translateToLocal("command.biomedictionary.usage"), new Object[0]);
     		}
     		
-    		Type[] result = BiomeDictionary.getTypesForBiome(biome);
+    		Type[] result = BiomeDictionary.getTypesForBiome(biome[0]);
     		if(result != null){
     			
     			if(result.length == 1){
@@ -73,24 +80,24 @@ public class CommandBiomeDictionary extends CommandBase {
         		}
     		}
     		if(text.endsWith("empty")){
-    			player.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.RED + StatCollector.translateToLocal("command.biomedictionary.null").replace("%b1", biome.biomeName)));
+    			player.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.RED + StatCollector.translateToLocal("command.biomedictionary.null").replace("%b1", biome[0].biomeName)));
     		}
     		else{
-    			player.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.GREEN + StatCollector.translateToLocal("command.biomedictionary.success").replace("%b1", biome.biomeName).replace("%b2", text)));
+    			player.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.GREEN + StatCollector.translateToLocal("command.biomedictionary.success").replace("%b1", biome[0].biomeName).replace("%b2", text)));
     		}
     	}
     	else if(args.length == 0){
     		String text = "empty";
-    		BiomeGenBase biome;
+    		BiomeGenBase[] biome;
     		
     		try {
-    			biome = sender.getEntityWorld().getWorldChunkManager().getBiomeGenAt(sender.getPlayerCoordinates().posX, sender.getPlayerCoordinates().posZ);
+    			biome = sender.getEntityWorld().getWorldChunkManager().getBiomeGenAt(null, sender.getPosition().getX(), sender.getPosition().getZ(), sender.getPosition().getX(), sender.getPosition().getZ(), false);
     		}
     		catch(Exception e){
     			throw new WrongUsageException(StatCollector.translateToLocal("command.biomedictionary.usage"), new Object[0]);
     		}
     		
-    		Type[] result = BiomeDictionary.getTypesForBiome(biome);
+    		Type[] result = BiomeDictionary.getTypesForBiome(biome[0]);
     		if(result != null){
     			
         		if(result.length == 1){
@@ -115,15 +122,29 @@ public class CommandBiomeDictionary extends CommandBase {
         		}
     		}
     		if(text.endsWith("empty")){
-    			player.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.RED + StatCollector.translateToLocal("command.biomedictionary.null").replace("%b1", biome.biomeName)));
+    			player.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.RED + StatCollector.translateToLocal("command.biomedictionary.null").replace("%b1", biome[0].biomeName)));
     		}
     		else{
-    			player.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.GREEN + StatCollector.translateToLocal("command.biomedictionary.success").replace("%b1", biome.biomeName).replace("%b2", text)));
+    			player.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.GREEN + StatCollector.translateToLocal("command.biomedictionary.success").replace("%b1", biome[0].biomeName).replace("%b2", text)));
     		}
     	}
     	else{
     		throw new WrongUsageException(StatCollector.translateToLocal("command.biomedictionary.usage"), new Object[0]);
     	}
+    }
+    
+    public List addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos){
+    	
+    	String s = "";
+    	
+    	if(args.length == 1){
+    		s = Integer.toString(pos.getX());
+    	}
+    	else if(args.length == 2){
+    		s = Integer.toString(pos.getZ());
+    	}
+    	
+    	return Lists.newArrayList(new String[] {s});
     }
 	
 }
