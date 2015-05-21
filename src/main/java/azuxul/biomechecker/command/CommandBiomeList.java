@@ -66,12 +66,7 @@ public class CommandBiomeList extends CommandBase {
 		            			if(text.endsWith("empty"))
 		            				text = biomeDic[b].name();
 		            			else{
-		            				if(b < 1){
-		            					text = text + " " + StatCollector.translateToLocal("text.and") + " " + biomeDic[b].name();
-		            				}
-		            				else{
 		            					text = text + ", " + biomeDic[b].name();
-		            				}
 		            			}
 		            		}
 		        		}
@@ -79,7 +74,6 @@ public class CommandBiomeList extends CommandBase {
 		    		}
 		    		
 		    		out.println(result[i].biomeID + " - " + result[i].biomeName + " - " + result[i].temperature + " - " + text);
-		    		out.println("--------------------------------------------------------------------------");
 		    		
 		    		text = "empty";
 				}
