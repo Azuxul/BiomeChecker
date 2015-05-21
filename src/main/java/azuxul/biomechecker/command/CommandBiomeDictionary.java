@@ -4,35 +4,35 @@ import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.IChatComponent;
 import net.minecraft.util.StatCollector;
-import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 
 public class CommandBiomeDictionary extends CommandBase {
 
-    public String getCommandName(){
+    @Override
+	public String getCommandName(){
     	
     	return "biomedictionary";
     }
     
-    public int getRequiredPermissionLevel(){
+    @Override
+	public int getRequiredPermissionLevel(){
     	
     	return 2;
     }
     
-    public String getCommandUsage(ICommandSender sender){
+    @Override
+	public String getCommandUsage(ICommandSender sender){
     	
         return StatCollector.translateToLocal("command.biomedictionary.usage");
     }
 
-    public void processCommand(ICommandSender sender, String[] args){
+    @Override
+	public void processCommand(ICommandSender sender, String[] args){
     	
     	EntityPlayer player = getCommandSenderAsPlayer(sender);
     	
@@ -119,6 +119,7 @@ public class CommandBiomeDictionary extends CommandBase {
     		}
     		else{
     			player.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.GREEN + StatCollector.translateToLocal("command.biomedictionary.success").replace("%b1", biome.biomeName).replace("%b2", text)));
+
     		}
     	}
     	else{

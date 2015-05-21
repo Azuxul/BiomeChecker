@@ -1,4 +1,7 @@
-command.biomedictionary.usage=/biomedictionary <x> <z> OU /biomedictionary
+command.biomedictionary.usage=/biomedictionary [x] [z]
 command.biomedictionary.success=Le biome %b1 fait parti de la catÃ©gorie %b2 dans le ForgeBiomeDictionary
 command.biomedictionary.null=Le biome %b1 ne fait parit du ForgeBiomeDictionary
+command.biomelist.usage=/biomelist
+command.biomelist.success=La liste de biomes a bien été enregistré dans le fichier %b1
+command.biomelist.error=Une erreur est survenue !
 text.and=et

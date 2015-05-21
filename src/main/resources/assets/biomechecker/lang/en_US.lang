@@ -1,4 +1,7 @@
-command.biomedictionary.usage=/biomedictionary <x> <z> OR /biomedictionary
+command.biomedictionary.usage=/biomedictionary [x] [z]
 command.biomedictionary.success=%b1 biome category in ForgeBiomeDictionary is %b2
 command.biomedictionary.null=%b1 biome not registry in ForgeBiomeDictionary
+command.biomelist.usage=/biomelist
+command.biomelist.success=Biome list has been saved in %b1 file !
+command.biomelist.error=An error has occurred !
 text.and=and
